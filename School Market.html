@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Market</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, black, yellow, green);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            overflow-y: scroll;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+        }
+        .introduction {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .product {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        .search {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>School Market</h1>
+
+<div class="introduction">
+    <p>Welcome to the School Market! Here you can find a variety of snacks and drinks at great prices. Use the search function to find your favorite items!</p>
+</div>
+
+<div class="search">
+    <input type="text" id="search" placeholder="Search for products...">
+    <button onclick="searchProducts()">Search</button>
+</div>
+
+<div id="product-list">
+    <div class="product" data-name="Soda">
+        <h2>Soda</h2>
+        <p>Price: 0.002 BTC or 50 Robux</p>
+        <button onclick="buyProduct('Soda')">Buy</button>
+    </div>
+    <div class="product" data-name="Chips">
+        <h2>Chips</h2>
+        <p>Price: 0.001 BTC or 30 Robux</p>
+        <button onclick="buyProduct('Chips')">Buy</button>
+    </div>
+    <div class="product" data-name="Candy">
+        <h2>Candy</h2>
+        <p>Price: 0.0005 BTC or 20 Robux</p>
+        <button onclick="buyProduct('Candy')">Buy</button>
+    </div>
+    <div class="product" data-name="Cookies">
+        <h2>Cookies</h2>
+        <p>Price: 0.0015 BTC or 40 Robux</p>
+        <button onclick="buyProduct('Cookies')">Buy</button>
+    </div>
+    <div class="product" data-name="Juice">
+        <h2>Juice</h2>
+        <p>Price: 0.0025 BTC or 60 Robux</p>
+        <button onclick="buyProduct('Juice')">Buy</button>
+    </div>
+    <div class="product" data-name="Chocolate Bar">
+        <h2>Chocolate Bar</h2>
+        <p>Price: 0.001 BTC or 25 Robux</p>
+        <button onclick="buyProduct('Chocolate Bar')">Buy</button>
+    </div>
+    <div class="product" data-name="Gum">
+        <h2>Gum</h2>
+        <p>Price: 0.0002 BTC or 10 Robux</p>
+        <button onclick="buyProduct('Gum')">Buy</button>
+    </div>
+    <div class="product" data-name="Granola Bar">
+        <h2>Granola Bar</h2>
+        <p>Price: 0.001 BTC or 20 Robux</p>
+        <button onclick="buyProduct('Granola Bar')">Buy</button>
+    </div>
+    <div class="product" data-name="Fruit Snacks">
+        <h2>Fruit Snacks</h2>
+        <p>Price: 0.0008 BTC or 15 Robux</p>
+        <button onclick="buyProduct('Fruit Snacks')">Buy</button>
+    </div>
+    <div class="product" data-name="Ice Cream">
+        <h2>Ice Cream</h2>
+        <p>Price: 0.003 BTC or 70 Robux</p>
+        <button onclick="buyProduct('Ice Cream')">Buy</button>
+    </div>
+</div>
+
+<script>
+    function buyProduct(name) {
+        window.location.href = `purchase.html?product=${name}`;
+    }
+
+    function searchProducts() {
+        const searchTerm = document.getElementById('search').value.toLowerCase();
+        const products = document.querySelectorAll('.product');
+        products.forEach(product => {
+            const productName = product.getAttribute('data-name').toLowerCase();
+            if (productName.includes(searchTerm)) {
+                product.style.display = 'block';
+            } else {
+                product.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Purchase Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: black;
+            color: white;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .product-info {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Purchase Page</h1>
+
+<div class="product-info">
+    <p id="product-name"></p>
+    <p>Please proceed with your payment.</p>
+    <button onclick="goBack()">Go Back</button>
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('product');
+    document.getElementById('product-name').innerText = `You are purchasing: ${productName}`;
+
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+</html>
